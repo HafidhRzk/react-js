@@ -1,17 +1,13 @@
 body {
-  background: rgb(201, 195, 195);
-  font-family: 'futura md bt';
-  color: rgb(0, 0, 0);
+  background: rgb(0, 0, 0);
+  font-family: "futura md bt";
+  color: rgb(255, 255, 255);
 }
 
 .base {
-  margin: auto;
-  padding-top: 10px;
+  display: flex;
   text-align: center;
-}
-
-.chart {
-  width: 900px;
-  margin: auto;
-  background-color: white;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

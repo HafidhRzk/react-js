@@ -1,5 +1,5 @@
+import React from "react";
 
-
-export default function Home (){
-    return "Ini Home"
+export default function Home() {
+  return <></>;
 }
