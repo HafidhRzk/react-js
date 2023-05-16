@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import "./index.css";
-
 import { QueryClient, QueryClientProvider } from "react-query";
 const client = new QueryClient();
 
