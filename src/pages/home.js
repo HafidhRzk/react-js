@@ -1,11 +1,16 @@
 import React from "react";
 import Navbar from "../components/navbar_home";
-import imgRight from "../assets/img/black-and-white-1282260.jpg";
+// import imgRight from "../assets/img/black-and-white-1282260.jpg";
 import { Button } from "react-bootstrap";
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
+  const title = 'Hompage';
   return (
     <>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <Navbar />
       <section>
         <div className="splitLeft">
@@ -24,7 +29,7 @@ export default function Home() {
           </div>
         </div>
         <div className="splitRight">
-          <img src={imgRight} alt="" />
+          {/* <img src={imgRight} alt="" /> */}
         </div>
       </section>
     </>

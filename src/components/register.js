@@ -6,12 +6,25 @@ export default function register() {
     <>
       <h2>Register</h2>
       <Form>
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextUsername">
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="formPlaintextFirstname"
+        >
           <Form.Label column sm="2">
-            Username
+            Firstname
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="string" placeholder="Username" />
+            <Form.Control type="string" placeholder="Firstname" />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formPlaintextLastname">
+          <Form.Label column sm="2">
+            Lastname
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control type="string" placeholder="Lastname" />
           </Col>
         </Form.Group>
 
