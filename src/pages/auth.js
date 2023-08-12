@@ -1,21 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import Navbar from "../components/navbar_home";
-// import imgRight from "../assets/img/black-and-white-1282260.jpg";
+import imgRight from "../assets/img/homeImg.jpg";
 import Login from "../components/login";
 import Register from "../components/register";
 import { useLocation } from "react-router-dom";
-import { UserContext } from "../context/userContext";
 
 export default function Auth() {
-  // let navigate = useNavigate();
-  const [state] = useContext(UserContext);
-
-  function checkAuth() {
-    if (state.isLogin === true) {
-      // navigate("/");
-    }
-  }
-  checkAuth();
 
   function Form(props) {
     const login = props.login;
@@ -36,9 +26,9 @@ export default function Auth() {
           <Form login={tab} />
         </div>
         <div className="splitRight">
-          {/* <img src={imgRight} alt="" /> */}
+          <img src={imgRight} alt="" />
         </div>
-      </section>
+      </section >
     </>
   );
 }

@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
-import { useContext, useState } from 'react';
 import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Helmet } from 'react-helmet';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import SweetAlert from "./swal";
 
 import { API } from '../config/api';
 
@@ -51,10 +49,15 @@ export default function Login() {
           payload: response.data.data,
         });
 
+        let message = response?.data?.message
+        SweetAlert("notif", message, "success")
+
         navigate("/dashboard")
       }
+
     } catch (error) {
-      toast(error.response.data.error.message)
+      let message = error?.response?.data?.message || error?.message
+      SweetAlert("notif", message, "error")
     }
   });
 
@@ -89,7 +92,6 @@ export default function Login() {
       <p>
         Don't Have Any Account? Please <a href="/register">Register!</a>
       </p>
-      <ToastContainer />
     </>
   );
 }
