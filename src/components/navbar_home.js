@@ -8,22 +8,22 @@ export default function NavbarHome() {
   const [state, dispatch] = useContext(UserContext);
 
   const handleLogout = () => {
-    dispatch({
-      type: 'LOGOUT',
-    });
-
-    SweetAlert("notif", "Success Log Out", "success")
+    SweetAlert("question", "Success Log Out", null, "/login", function (confirmed) {
+      if (confirmed) {
+        dispatch({
+          type: 'LOGOUT',
+        });
+      }
+    })
   }
 
   function NavContent(props) {
     const isLogin = props.isState;
     if (isLogin) {
       return (
-        <a href="/" onClick={() => handleLogout()} >
-          <Navbar.Text className="navbar">
-            Log Out
-          </Navbar.Text>
-        </a>
+        <Navbar.Text className="navbar" onClick={() => handleLogout()} >
+          Log Out
+        </Navbar.Text>
       )
     } else {
       return (
@@ -45,7 +45,9 @@ export default function NavbarHome() {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end" >
-            <NavContent isState={state.isLogin} />
+            <div className="pointer">
+              <NavContent isState={state.isLogin} />
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

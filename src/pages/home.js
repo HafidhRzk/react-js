@@ -4,10 +4,10 @@ import { Helmet } from 'react-helmet';
 import SweetAlert from "../components/swal";
 
 export default function Home() {
-  const title = 'Hompage';
+  const title = 'Landing Page';
 
   const handleFuck = () => {
-    SweetAlert();
+    SweetAlert("notif", "Just Fucking Go, Shut Down Your PC And Fuck Your Mother!");
     window.opener = null;
     window.open("", "_self");
     window.close();

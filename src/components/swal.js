@@ -1,15 +1,8 @@
 import Swal from 'sweetalert2'
 
-export default function SweetAlert(type = null, message, icon) {
+export default function SweetAlert(type, message, icon, loc, callback) {
     switch (type) {
         default:
-            Swal.fire({
-                position: 'center',
-                title: "Just Fucking Go, Shut Down Your PC And Fuck Your Mother!",
-                showConfirmButton: false,
-                timer: 3000
-            })
-            break;
         case "notif":
             Swal.fire({
                 position: 'center',
@@ -22,36 +15,39 @@ export default function SweetAlert(type = null, message, icon) {
         case "question":
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
+                    confirmButton: 'btn btn-success button-swal',
+                    cancelButton: 'btn btn-danger button-swal'
                 },
                 buttonsStyling: false
             })
-
             swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                reverseButtons: true,
+                closeOnConfirm: false,
+                closeOnCancel: false,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    swalWithBootstrapButtons.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
+                    swalWithBootstrapButtons.fire({
+                        position: 'center',
+                        icon: "success",
+                        title: message,
+                        showConfirmButton: false,
+                    })
+                    callback(result?.value)
+                    window.location = loc;
                 } else if (
-                    /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your imaginary file is safe :)',
-                        'error'
-                    )
+                    swalWithBootstrapButtons.fire({
+                        position: 'center',
+                        icon: "error",
+                        title: "Operation Cancelled",
+                        showConfirmButton: false,
+                    })
                 }
             })
     }
