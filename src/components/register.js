@@ -12,13 +12,12 @@ export default function Register() {
   let navigate = useNavigate();
 
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    userName: "",
     email: '',
     password: '',
   });
 
-  const { firstName, lastName, email, password } = form;
+  const { userName, email, password } = form;
 
   const handleOnChange = (e) => {
     setForm({
@@ -68,25 +67,12 @@ export default function Register() {
       </Helmet>
       <h2>Register</h2>
       <Form onSubmit={(e) => handleOnSubmit.mutate(e)}>
-        <Form.Group
-          as={Row}
-          className="mb-3"
-          controlId="formPlaintextFirstname"
-        >
+        <Form.Group as={Row} className="mb-3" controlId="formPlaintextUsername">
           <Form.Label column sm="2">
-            Firstname
+            Username
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="string" placeholder="Firstname" onChange={handleOnChange} value={firstName} name="firstName" />
-          </Col>
-        </Form.Group>
-
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextLastname">
-          <Form.Label column sm="2">
-            Lastname
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control type="string" placeholder="Lastname" onChange={handleOnChange} value={lastName} name="lastName" />
+            <Form.Control type="string" placeholder="Username" onChange={handleOnChange} value={userName} name="userName" />
           </Col>
         </Form.Group>
 

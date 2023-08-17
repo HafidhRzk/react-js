@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { UserContext } from '../context/userContext';
-import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Helmet } from 'react-helmet';
 import SweetAlert from "./swal";
@@ -10,8 +9,6 @@ import { API } from '../config/api';
 
 export default function Login() {
   const title = 'Login';
-
-  let navigate = useNavigate();
 
   const [, dispatch] = useContext(UserContext);
 
@@ -49,10 +46,14 @@ export default function Login() {
           payload: response.data.data,
         });
 
-        let message = response?.data?.message
-        SweetAlert("notif", message, "success")
+        const swalOpt = {
+          message: response?.data?.message,
+          type: "notif",
+          icon: "success",
+          loc: "/dashboard"
+        }
 
-        navigate("/dashboard")
+        SweetAlert(swalOpt)
       }
 
     } catch (error) {

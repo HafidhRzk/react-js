@@ -8,13 +8,21 @@ export default function NavbarHome() {
   const [state, dispatch] = useContext(UserContext);
 
   const handleLogout = () => {
-    SweetAlert("question", "Success Log Out", null, "/login", function (confirmed) {
-      if (confirmed) {
-        dispatch({
-          type: 'LOGOUT',
-        });
+    const swalOpt = {
+      message: "Success Log Out",
+      type: "question",
+      icon: "success",
+      loc: "/login",
+      callback: function (confirmed) {
+        if (confirmed) {
+          dispatch({
+            type: 'LOGOUT',
+          });
+        }
       }
-    })
+    }
+
+    SweetAlert(swalOpt)
   }
 
   function NavContent(props) {

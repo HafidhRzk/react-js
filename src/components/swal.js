@@ -1,6 +1,14 @@
 import Swal from 'sweetalert2'
 
-export default function SweetAlert(type, message, icon, loc, callback) {
+export default function SweetAlert({ type, message, icon, loc, callback }) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success button-swal',
+            cancelButton: 'btn btn-danger button-swal'
+        },
+        buttonsStyling: false
+    })
+
     switch (type) {
         default:
         case "notif":
@@ -9,26 +17,20 @@ export default function SweetAlert(type, message, icon, loc, callback) {
                 icon: icon,
                 title: message,
                 showConfirmButton: false,
-                timer: 3000
-            });
+                timer: 1500
+            }).then(() => {
+                if (loc) {
+                    window.location = loc;
+                }
+            })
             break;
         case "question":
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success button-swal',
-                    cancelButton: 'btn btn-danger button-swal'
-                },
-                buttonsStyling: false
-            })
             swalWithBootstrapButtons.fire({
                 title: 'Are you sure?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
                 cancelButtonText: 'No',
-                reverseButtons: true,
-                closeOnConfirm: false,
-                closeOnCancel: false,
             }).then((result) => {
                 if (result.isConfirmed) {
                     swalWithBootstrapButtons.fire({
@@ -36,9 +38,13 @@ export default function SweetAlert(type, message, icon, loc, callback) {
                         icon: "success",
                         title: message,
                         showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        callback?.(result?.value)
+                        if (loc) {
+                            window.location = loc;
+                        }
                     })
-                    callback(result?.value)
-                    window.location = loc;
                 } else if (
                     result.dismiss === Swal.DismissReason.cancel
                 ) {

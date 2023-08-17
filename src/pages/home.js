@@ -7,10 +7,18 @@ export default function Home() {
   const title = 'Landing Page';
 
   const handleFuck = () => {
-    SweetAlert("notif", "Just Fucking Go, Shut Down Your PC And Fuck Your Mother!");
-    window.opener = null;
-    window.open("", "_self");
-    window.close();
+    const swalOpt = {
+      message: "Just Fucking Go, Shut Down Your PC And Fuck Your Mother!",
+      type: "question",
+      loc: "https://img.freepik.com/free-vector/fuck-you-symbol-comic-style_23-2148684350.jpg?w=740&t=st=1692007402~exp=1692008002~hmac=2f6ebf713dc98f4ab872f9cbae30ae46ef38b3057c337053944e203976a3c68c",
+      callback: function (confirmed) {
+        if (confirmed) {
+          window.close()
+        }
+      }
+    }
+
+    SweetAlert(swalOpt);
   }
 
   return (
