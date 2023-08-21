@@ -40,14 +40,6 @@ img {
   width: 50px;
 }
 
-.navbar {
-  height: 10vh;
-  padding: 4px;
-  margin: auto;
-  background-color: #060606;
-  color: white;
-}
-
 a {
   text-decoration: none;
 }

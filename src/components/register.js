@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { Helmet } from 'react-helmet';
 import { API } from '../config/api';
 import SweetAlert from "./swal";
+import getRoleData from "../api/getRoleData";
 
 export default function Register() {
   const title = 'Register';
+  const [role, setRole] = useState([]);
 
   let navigate = useNavigate();
 
@@ -15,9 +17,10 @@ export default function Register() {
     userName: "",
     email: '',
     password: '',
+    roleId: ""
   });
 
-  const { userName, email, password } = form;
+  const { userName, email, password, roleId } = form;
 
   const handleOnChange = (e) => {
     setForm({
@@ -48,8 +51,7 @@ export default function Register() {
       }
 
       setForm({
-        firstName: '',
-        lastName: '',
+        userName: '',
         email: '',
         password: '',
       });
@@ -59,6 +61,14 @@ export default function Register() {
       SweetAlert("notif", message, "error")
     }
   });
+
+  const getData = async () => {
+    setRole(await getRoleData());
+  };
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <>
@@ -93,6 +103,22 @@ export default function Register() {
             <Form.Control type="password" placeholder="Password" onChange={handleOnChange} value={password} name="password" />
           </Col>
         </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formPlaintextRole">
+          <Form.Label column sm="2">
+            Role
+          </Form.Label>
+          <Col sm="10">
+            <Form.Select type="select" placeholder="Select Role" onChange={handleOnChange} value={roleId} name="roleId">
+              <option disabled>Select Your Role</option>
+              {role?.map((item, index) => (
+                <option key={index} value={item.id}>{item.roleName}</option>
+              ))}
+            </Form.Select>
+          </Col>
+        </Form.Group>
+
+
         <Button type="submit" className="mb-3 button" variant="outline-light">
           Register
         </Button>

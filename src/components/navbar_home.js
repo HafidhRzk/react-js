@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Navbar, Container } from "react-bootstrap";
 import { UserContext } from "../context/userContext";
 import SweetAlert from "./swal";
+import '../assets/css/Navbar.css'
 
 export default function NavbarHome() {
   const [state, dispatch] = useContext(UserContext);
