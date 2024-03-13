@@ -6,14 +6,14 @@ import SweetAlert from "../components/swal";
 export default function Home() {
   const title = 'Landing Page';
 
-  const handleFuck = () => {
+  const handleExit = () => {
     const swalOpt = {
       message: "See You Next Time",
       type: "question",
-      loc: "www.google.com",
       callback: function (confirmed) {
         if (confirmed) {
           window.close()
+          window.location.replace('https://google.com');
         }
       }
     }
@@ -37,7 +37,7 @@ export default function Home() {
             <Button variant="info" className="button" href="/login">
               Get Started!
             </Button>
-            <Button type="button" onClick={() => handleFuck()} variant="light" className="button">
+            <Button type="button" onClick={() => handleExit()} variant="light" className="button">
               Go to Google
             </Button>
           </div>

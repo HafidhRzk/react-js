@@ -13,11 +13,11 @@ export default function Login() {
   const [, dispatch] = useContext(UserContext);
 
   const [form, setForm] = useState({
-    email: '',
+    username: '',
     password: '',
   });
 
-  const { email, password } = form;
+  const { username, password } = form;
 
   const handleOnChange = (e) => {
     setForm({
@@ -38,7 +38,11 @@ export default function Login() {
 
       const body = JSON.stringify(form);
 
-      const response = await API.post('/auth/login', body, config);
+      const response = await API.post('/auth', body, config);
+
+      console.log(response, "response")
+
+      abx
 
       if (response?.status === 200) {
         dispatch({
@@ -57,8 +61,12 @@ export default function Login() {
       }
 
     } catch (error) {
-      let message = error?.response?.data?.message || error?.message
-      SweetAlert("notif", message, "error")
+      const swalOpt = {
+        type: "notif",
+        icon: "error",
+        message: error?.response?.data?.message || error?.message
+      }
+      SweetAlert(swalOpt)
     }
   });
 
@@ -74,7 +82,7 @@ export default function Login() {
             Email
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="email" placeholder="Email" onChange={handleOnChange} value={email} name="email" />
+            <Form.Control type="username" placeholder="Email" onChange={handleOnChange} value={username} name="username" />
           </Col>
         </Form.Group>
 

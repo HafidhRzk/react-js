@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar_home";
-import Sidebar from "../components/sidebar";
+// import Sidebar from "../components/sidebar";
 import { Helmet } from 'react-helmet';
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
                 <title>{title}</title>
             </Helmet>
             <Navbar />
-            <Sidebar />
+            {/* <Sidebar /> */}
             <section>
                 <h1>
                     Ini Halaman Dashboard Setelah Login!
